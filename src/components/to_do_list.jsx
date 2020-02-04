@@ -16,20 +16,28 @@ const toDos = [
     },
     {
         id: '04',
-        title: 'Clean House'
+        title: 'Pray for Kobe Bryant and his family'
     }
-]
+];
 
-function ToDoList(props) {
-    const toDoElements = toDos.map((item) => 
-        <ListItem key={item.id} title={item.title} />
-    );
+class ToDoList extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            list: []
+        };
+    }
+    render() {
+        const toDoElements = toDos.map((item) => 
+            <ListItem key={item.id} title={item.title} />
+        );
 
-    return (
-        <ol>
-            {toDoElements}
-        </ol>
-    );
+        return (
+            <ol>
+                {toDoElements}
+            </ol>
+        );
+    }
 }
 
 export default ToDoList;
