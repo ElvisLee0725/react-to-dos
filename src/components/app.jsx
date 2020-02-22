@@ -92,10 +92,16 @@ class App extends React.Component {
     render() {
         const { list, error } = this.state;
         return (
-            <div>
-                <h1>To Do List with class Component</h1>
-                <ToDoList list={list}/>
-                <AddToDoForm add={this.addToDo}/>
+            <div className="container">
+                <h1 className="text-center my-4">To Do List</h1>
+                <div className="row">
+                    <div className="col-md-8">
+                        <ToDoList list={list}/>
+                    </div>
+                    <div className="col-md-4">
+                        <AddToDoForm add={this.addToDo}/>
+                    </div>
+                </div>
                 <p>{error}</p>
             </div>
         );
