@@ -1,6 +1,7 @@
 import React from 'react';
 import ToDoList from './to_do_list';
 import AddToDoForm from './add_to_do_form';
+import { ListContext } from '../list_context';
 
 const toDos = [
     {
@@ -25,6 +26,7 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            addItem: (item) => this.addToDo(item),
             list: [],
             error: ''
         };
@@ -90,20 +92,20 @@ class App extends React.Component {
     // }
 
     render() {
-        const { list, error } = this.state;
         return (
-            <div className="container">
-                <h1 className="text-center my-4">To Do List</h1>
-                <div className="row">
-                    <div className="col-md-8">
-                        <ToDoList list={list}/>
-                    </div>
-                    <div className="col-md-4">
-                        <AddToDoForm add={this.addToDo}/>
+            <ListContext.Provider value={this.state}>
+                <div className="container">
+                    <h1 className="text-center my-4">To Do List</h1>
+                    <div className="row">
+                        <div className="col-md-8">
+                            <ToDoList />
+                        </div>
+                        <div className="col-md-4">
+                            <AddToDoForm />
+                        </div>
                     </div>
                 </div>
-                <p>{error}</p>
-            </div>
+            </ListContext.Provider>
         );
     }
 }
